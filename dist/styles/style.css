@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    font-family: 'Courier New', Courier, monospace;
+}
+.header{
+    background-color: bisque;
+    padding: 40px 50px;
+}
+.language
+{
+    width: 40%;
+    display: inline-block;
+}

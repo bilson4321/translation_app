@@ -1,0 +1,30 @@
+{
+  "name": "translation2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"gulp dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "connect-livereload": "^0.6.1",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-embedlr": "^0.5.2",
+    "gulp-jshint": "^2.1.0",
+    "gulp-livereload": "^4.0.2",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.11.0",
+    "tiny-lr": "^1.1.1"
+  },
+  "dependencies": {
+    "angular": "^1.7.9"
+  }
+}
