@@ -3,17 +3,17 @@ var LanguageTreeService=function(){
     
     const Node=function(value)
     {   
-        this.data=value;
-        // this.parent=null;
+        this.name=value;
+        this.data={english:"",japanese:""}
         this.children=[];
     }
-    this.root=new Node("category");
+    this.root=new Node("translator");
 
-    this.add=(value, toNodeData="category")=>{
+    this.add=(value, toNodeData="translator")=>{
         
         var node=new Node(value);
-        console.log(node);
         var parent=(typeof toNodeData !== 'undefined')? this.search(toNodeData):null;
+        console.log("this is parent",parent)
         if(parent)
         {
             parent.children.push(node);
@@ -22,9 +22,9 @@ var LanguageTreeService=function(){
             if(!this.root){
                 this.root=node;
             }else{
-                return 'Root node is already assigned';
+                console.log('Root node is already assigned');
             }
-        }
+        }   
     }
     this.contains=(value)=>{
         return this.search(value)?true:false;
@@ -33,7 +33,7 @@ var LanguageTreeService=function(){
         let queue=[this.root];
         while(queue.length){
             var node=queue.shift();
-            if(node.data==value)
+            if(node.name==value)
             {
                 return node;
             }
@@ -53,7 +53,7 @@ var LanguageTreeService=function(){
           var string = '';
           while(queue.length) {
             var node = queue.shift();
-            string += node.data.toString() + ' ';
+            string += node.name.toString() + ' ';
             if(node === newline && queue.length) {
               queue.push(newline);
             }
@@ -62,6 +62,26 @@ var LanguageTreeService=function(){
             }
           }
           console.log(string.slice(0, -2).trim());
+    }
+    this.treeFirstLevel=()=>{
+        if(!this.root) {
+            console.log('No root node found');
+            return null;
+          }
+       var array=[];
+       
+       if(this.root.children.length===0)
+       {
+           return null;
+       }
+       else
+       {
+           for(var child of this.root.children){
+               array.push(child.name);
+           } 
+       }
+  
+       return array;
     }
 }
 

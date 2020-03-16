@@ -1,8 +1,8 @@
 "use strict";
 
 var TranslatorController = function($scope,languageService) {
-  $scope.newCategory="";
-  $scope.selectedCategory="last";
+  $scope.newNode="";
+  $scope.selectedNode=null;
   $scope.englishObject={
                       "application_name": "Purchasing Manager",
                       "language": {
@@ -45,20 +45,31 @@ var TranslatorController = function($scope,languageService) {
                               }
                           }
                       }
-  $scope.jsonObject=[
-            "application_name",
-            "language",
-            "common"
-  ]
+  $scope.jsonObject=[];
+
   $scope.addElement=function(){
-    console.log(languageService.add($scope.newCategory));
+    if($scope.selectedNode===null)
+    {
+      languageService.add($scope.newNode);
+    }
+    else{
+      languageService.add($scope.newNode,$scope.selectedNode.name);
+    }
+    $scope.newNode='';
+    $scope.arrayTree();
   }
-  $scope.findElement=function(){
-    console.log("find");
-    console.log(languageService.search($scope.selectedCategory));
+  $scope.selectNode=function(name){
+   $scope.selectedNode=languageService.search(name);
+   console.log("selectedNode",$scope.selectedNode);
   }
   $scope.printTree=function(){
     languageService.printTree();
+  }
+  $scope.arrayTree=function(){
+    $scope.jsonObject=languageService.treeFirstLevel();
+  }
+  $scope.resetSelect=function(){
+    $scope.selectedNode=null;
   }
 };
 
