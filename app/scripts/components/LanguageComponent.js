@@ -6,8 +6,6 @@ var LanguageComponent = {
               <div>
                 <textarea rows="20" cols="40" ng-model="$ctrl.languageText">
                 </textarea><br>
-                <label>Select a JSON File:</label>
-                <input type="file">
               </div>
             </div>
             `,

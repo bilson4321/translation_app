@@ -1,6 +1,6 @@
 "use strict";
 
-var TranslatorController = function($scope,languageService) {
+var TranslatorController = function($scope,languageService,fileService) {
   $scope.newNode="";
   $scope.selectedNode=null;
   $scope.englishObject={
@@ -45,6 +45,8 @@ var TranslatorController = function($scope,languageService) {
                               }
                           }
                       }
+  $scope.myList = { };    
+
   $scope.jsonObject=[];
 
   $scope.addElement=function(){
@@ -59,14 +61,16 @@ var TranslatorController = function($scope,languageService) {
     $scope.arrayTree();
   }
   $scope.selectNode=function(name){
+    $scope.selectedNode=null;
    $scope.selectedNode=languageService.search(name);
    console.log("selectedNode",$scope.selectedNode);
+   $scope.$apply();
   }
-  $scope.printTree=function(){
-    languageService.printTree();
+  $scope.downloadJson=function(language){
+    fileService.downloadFile(languageService.languageJson(language),language);
   }
   $scope.arrayTree=function(){
-    $scope.jsonObject=languageService.treeFirstLevel();
+    $scope.myList=languageService.tree();
   }
   $scope.resetSelect=function(){
     $scope.selectedNode=null;

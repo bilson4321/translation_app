@@ -44,44 +44,41 @@ var LanguageTreeService=function(){
         }
         return null;
     }
-    this.printTree=()=>{
-        if(!this.root) {
-            return console.log('No root node found');
-          }
-          var newline = new Node('|');
-          var queue = [this.root, newline];
-          var string = '';
-          while(queue.length) {
-            var node = queue.shift();
-            string += node.name.toString() + ' ';
-            if(node === newline && queue.length) {
-              queue.push(newline);
-            }
-            for(var i = 0; i < node.children.length; i++) {
-              queue.push(node.children[i]);
-            }
-          }
-          console.log(string.slice(0, -2).trim());
-    }
-    this.treeFirstLevel=()=>{
+    
+    this.tree=()=>{
         if(!this.root) {
             console.log('No root node found');
             return null;
           }
-       var array=[];
-       
-       if(this.root.children.length===0)
-       {
-           return null;
-       }
-       else
-       {
-           for(var child of this.root.children){
-               array.push(child.name);
-           } 
-       }
-  
-       return array;
+        return this.root;
+    }
+    this.languageJson=(language="japanese")=>{
+        if(!this.root) {
+            console.log('No root node found');
+            return null;
+          }
+        var json={};
+        
+          function extractor(node,language)
+          {
+            let temp={};
+            if(node.children.length===0)
+                temp[node.name]=node.data[language];
+            else
+            {
+                var temp2={};
+                for(var c of node.children)
+                {
+                    let temp3=extractor(c,language);
+                    Object.assign(temp2,temp3);
+                }
+                temp[node.name]= temp2;
+            }
+            return temp;
+          }
+        
+        json=extractor(this.root,language);
+        return json;
     }
 }
 

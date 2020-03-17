@@ -1,23 +1,17 @@
 "use strict";
 
-var TreeDirective = {
-    link: function($scope, iElm, iAttrs, controller) {
-
-        /* These function will be called from the ControllerExp when it needs so.
-         Function can do any things like manipulating the DOM, addin
-         event listner ...
-        */
-        scope.manipulateDom1 = function(){
-            // DOM manipualtion
-        };
-
-        scope.manipulateDom2 = function(){
-            // DOM manipualtion
-        };
-
-        scope.manipulateDom3 = function(){
-            // DOM manipualtion
-        };
+var TreeDirective = function()
+{
+    return{
+        restrict: 'E', // tells Angular to apply this to only html tag that is <tree>
+        replace: true, // tells Angular to replace <tree> by the whole template
+        scope: {
+          t: '=src',
+          selectNode: '='
+        },    
+        template: '<ul><branch ng-repeat="c in t.children" src="c" select-node="selectNode"></branch></ul>'    
+    };
 };
+
 
 module.exports = TreeDirective;
