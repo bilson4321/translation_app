@@ -29,6 +29,7 @@ var BranchDirective = function($compile){
               scope.selectNode(scope.b.name);
               if (has_children) {
                 element.toggleClass('collapsed');
+                element.toggleClass('selected');
               }
           });      
         }

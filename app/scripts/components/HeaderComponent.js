@@ -3,7 +3,7 @@
 var HeaderComponent = {
   template:`
             <div class="header">
-              <h1>Translator</h1>
+              <img src="images/logo.png" class="logo"></img>
             </div>
             `,
 };

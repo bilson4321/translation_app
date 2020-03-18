@@ -50,7 +50,9 @@ var TranslatorController = function($scope,languageService,fileService) {
   $scope.jsonObject=[];
 
   $scope.addElement=function(){
-    if($scope.selectedNode===null)
+    if($scope.newNode!=="")
+    { 
+      if($scope.selectedNode===null)
     {
       languageService.add($scope.newNode);
     }
@@ -59,10 +61,22 @@ var TranslatorController = function($scope,languageService,fileService) {
     }
     $scope.newNode='';
     $scope.arrayTree();
+    }
+    
   }
   $scope.selectNode=function(name){
-    $scope.selectedNode=null;
-   $scope.selectedNode=languageService.search(name);
+    if($scope.selectedNode===null)
+    {
+      $scope.selectedNode=languageService.search(name);
+    }
+    else if($scope.selectedNode.name===name)
+    {
+      $scope.selectedNode=null;
+    }
+    else
+    {
+      $scope.selectedNode=languageService.search(name);
+    }
    console.log("selectedNode",$scope.selectedNode);
    $scope.$apply();
   }

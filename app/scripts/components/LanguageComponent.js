@@ -4,7 +4,7 @@ var LanguageComponent = {
   template:`
             <div>
               <div>
-                <textarea rows="20" cols="40" ng-model="$ctrl.languageText">
+                <textarea rows="10" cols="20" ng-model="$ctrl.languageText">
                 </textarea><br>
               </div>
             </div>
