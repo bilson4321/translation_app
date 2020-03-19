@@ -12,7 +12,10 @@ var BranchDirective = function($compile){
         link: function(scope, element, attrs) {
           //// Check if there are any children, otherwise we'll have infinite execution
           
-          var has_children = angular.isArray(scope.b.children);
+          scope.$watch('b',function(){
+            console.log("changed",scope.b.children.length);
+          })
+          var has_children = scope.b.children.length>0;;
           
           //// Manipulate HTML in DOM
           if (has_children) {        
@@ -25,12 +28,13 @@ var BranchDirective = function($compile){
           //// Bind events
           element.on('click', function(event) {
               event.stopPropagation();   
-              console.log("name",scope.b.name)       
+              var has_children =scope.b.children.length>0;
+              console.log("name",scope.b.children.length)       
               scope.selectNode(scope.b.name);
               if (has_children) {
                 element.toggleClass('collapsed');
-                element.toggleClass('selected');
               }
+              element.toggleClass('selected');
           });      
         }
     };

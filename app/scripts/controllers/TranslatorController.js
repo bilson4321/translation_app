@@ -62,7 +62,7 @@ var TranslatorController = function($scope,languageService,fileService) {
     $scope.newNode='';
     $scope.arrayTree();
     }
-    
+   
   }
   $scope.selectNode=function(name){
     if($scope.selectedNode===null)
